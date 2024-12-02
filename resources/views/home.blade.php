@@ -36,16 +36,17 @@
 <div class="card" style="width: 100%;">
     <div class="card-header">
         メモ一覧
-        <a href="{{ route('submit')}}" class="submit">メモを追加</a>
+        <a href="{{ route('showSubmit')}}" class="submit">メモを追加</a>
     </div>
     <table class="table">
         <tbody>
-           @foreach ($memos as $memo)
-           <tr>
-            <td class="left">{{ $memo->title }}</td>
-            <td><a href="{{ route('showSubmit', ['id' => $memo->id]) }}">編集</a></td>
-            <td><a href="{{ route('delete', ['id' => $memo->id]) }}">削除</a></td>
-           </tr>
+            @foreach ($memos as $memo)
+            <tr>
+                <td class="left">{{ $memo->title }}</td>
+                <td><a href="{{ route('showSubmit', $memo) }}">編集</a></td>
+                <td><a href="{{ route('delete', $memo) }}">削除</a></td>
+            </tr>
+            @endforeach
         </tbody>
     </table>
 </div>

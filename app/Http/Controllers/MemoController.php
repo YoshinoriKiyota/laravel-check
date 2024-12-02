@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Memo;
 
@@ -26,22 +27,13 @@ class MemoController extends Controller
         return view('submit', compact('memo'));
     }
 
-    public function store(Request $request, $id = 0)
+    public function store(Request $request)
     {
-        $title = $request->input('title');
-        $content = $request->input('content');
-        if ($id == 0) {
-            Memo::create([
-                'title' => $title,
-                'content' => $content
-            ]);
-        } else {
-            $memo = Memo::find($id);
-            $memo->update([
-                'title' => $title,
-                'content' => $content
-            ]);
-        }
+        $memo = new Memo();
+        $memo->title = $request->input('title');
+        $memo->content = $request->input('content');
+        $memo->id = Auth::id();
+        
         return redirect()->route('home');
     }
 

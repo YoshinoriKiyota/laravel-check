@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 Route::get('/home', [MemoController::class, 'index'])->name('home');
 
-Route::get('/submit/{id}', [MemoController::class, 'create'])->name('showSubmit');
+Route::get('/submit/', [MemoController::class, 'create'])->name('showSubmit');
 
 Route::post('/submit/{id}', [MemoController::class, 'store'])->name('postSubmit');
 
