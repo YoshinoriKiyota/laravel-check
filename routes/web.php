@@ -18,10 +18,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', [MemoController::class, 'index'])->name('home');
+Route::get('/home', [MemoController::class, 'index'])->name('home.index');
 
-Route::get('/submit/', [MemoController::class, 'create'])->name('showSubmit');
+Route::get('/home/create', [MemoController::class, 'create'])->name('home.create');
 
-Route::post('/submit/{id}', [MemoController::class, 'store'])->name('postSubmit');
+Route::post('/home', [MemoController::class, 'store'])->name('home.store');
+
+Route::get('/home/edit', [MemoController::class, 'edit'])->name('home.edit');
 
 Route::get('/delete/{id}', [MemoController::class, 'destroy'])->name('delete');

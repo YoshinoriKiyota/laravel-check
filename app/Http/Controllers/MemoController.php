@@ -9,22 +9,15 @@ use App\Models\Memo;
 
 class MemoController extends Controller
 {
-    // home.blade.phpを表示
     public function index()
     {
         $memos = Memo::all();
-        return view('home', compact('memos'));
+        return view('index', compact('memos'));
     }
 
-    // submit.blade.phpを表示
-    public function create($id = 0)
+    public function create()
     {
-        if ($id != 0) {
-            $memo = Memo::where('id', $id)->get()->first();
-        } else {
-            $memo = (object) ["id" => 0, "title" => "", "content" => ""];
-        }
-        return view('submit', compact('memo'));
+        return view('create');
     }
 
     public function store(Request $request)
@@ -34,7 +27,29 @@ class MemoController extends Controller
         $memo->content = $request->input('content');
         $memo->id = Auth::id();
         
-        return redirect()->route('home');
+        return redirect()->route('home.index');
+    }
+
+    public function edit(Memo $memo)
+    {
+        if($memo->id !== Auth::id()) {
+            return redirect()->route('index');
+        }
+
+        return view('edit', compact('memo'));
+    }
+
+    public function update(Request $request, Memo $memo)
+    {
+        if($memo->id !== Auth::id()) {
+            return redirect()->route('index');
+        }
+
+        $memo->title = $request->input('title');
+        $memo->content = $request->input('content');
+        $memo->save();
+
+        return redirect()->route('index', $memo);
     }
 
     public function destroy($id)

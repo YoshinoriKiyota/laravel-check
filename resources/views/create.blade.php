@@ -22,17 +22,17 @@
 @endsection
 
 @section('content')
-<form method="POST" action="{{ route('postSubmit', ['id' => $memo->id]) }}">
+<form method="POST" action="{{ route('home.store') }}">
     @csrf
     <div class="form-group">
         <label for="title">タイトル</label>
-        <input type="text" class="form-control" id="title" name="title" value="{{ $memo->title }}">
+        <input type="text" class="form-control" id="title" name="title">
     </div>
     <div class="form-group">
         <label for="content">内容</label>
-        <input type="text" class="form-control" id="content" name="content" value="{{ $memo->content }}">
+        <input type="text" class="form-control" id="content" name="content">
     </div>
-    <a href="{{ route('home')}}" class="btn btn-primary">戻る</a>
+    <a href="{{ route('home.index')}}" class="btn btn-primary">戻る</a>
     <button type="submit" class="btn btn-success">追加</button>
 </form>
 @endsection
