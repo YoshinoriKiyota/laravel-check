@@ -2,7 +2,7 @@
 
 @section('content')
 <a href="{{ route('posts.index') }}" class="btn btn-primary ms-5">戻る</a>
-<form action="{{ route('posts.update', ['id' => $memo->id]) }}" method="POST" class="w-75 mx-auto">
+<form action="{{ route('posts.update', $memo) }}" method="POST" class="w-75 mx-auto">
     @csrf
     @method('PATCH')
     <div class="form-group">

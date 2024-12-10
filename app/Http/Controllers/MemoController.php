@@ -26,13 +26,18 @@ class MemoController extends Controller
     // 作成機能
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|max80',
+            'content' => 'required'
+        ]);
+
         $memo = new Memo();
         $memo->title = $request->input('title');
         $memo->content = $request->input('content');
         $memo->user_id = Auth::id();
         $memo->save();
 
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index')->with('flash_message', '投稿が完了しました。');
     }
 
     // 詳細ページ
@@ -71,6 +76,12 @@ class MemoController extends Controller
     // 削除機能
     public function destroy(Memo $memo)
     {
-        
+        if ($memo->user_id !== Auth::id()) {
+            return redirect()->route('posts.index');
+        }
+
+        $memo->delete();
+
+        return redirect()->route('posts.index');
     }
 }

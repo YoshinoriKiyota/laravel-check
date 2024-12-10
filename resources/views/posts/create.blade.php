@@ -1,6 +1,14 @@
 @extends('layouts.app')
-
 @section('content')
+
+@if ($errors->any())
+<ul>
+    @foreach ($errors->all() as $error)
+    <li>{{ $error }}</li>
+    @endforeach
+</ul>
+@endif
+
 <a href="{{ route('posts.index') }}" class="btn btn-primary ms-5">戻る</a>
 <form action="{{ route('posts.store') }}" method="POST" class="w-75 mx-auto">
     @csrf

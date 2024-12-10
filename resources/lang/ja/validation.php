@@ -120,6 +120,9 @@ return [
         ],
     ],
 
-    'attributes' => [],
+    'attributes' => [
+        'name' => 'タイトル',
+        'content' => '内容',
+    ],
 
 ];
