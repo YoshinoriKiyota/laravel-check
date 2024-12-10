@@ -34,6 +34,6 @@ Route::post('/posts', [MemoController::class, 'store'])->middleware('auth')->nam
 
 Route::get('/posts/{id}', [MemoController::class, 'show'])->middleware('auth')->name('posts.show');
 
-Route::get('/posts/{id}/edit', [MemoController::class, 'edit'])->middleware('auth')->name('posts.edit');
+Route::get('/posts/{memo}/edit', [MemoController::class, 'edit'])->middleware('auth')->name('posts.edit');
 
 Route::patch('/posts/{id}', [MemoController::class, 'update'])->middleware('auth')->name('posts.update');
