@@ -27,7 +27,7 @@ class MemoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|max80',
+            'title' => 'required|max:80',
             'content' => 'required'
         ]);
 

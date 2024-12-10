@@ -121,7 +121,7 @@ return [
     ],
 
     'attributes' => [
-        'name' => 'タイトル',
+        'title' => 'タイトル',
         'content' => '内容',
     ],
 
